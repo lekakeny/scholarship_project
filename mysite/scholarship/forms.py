@@ -2,7 +2,14 @@ from django import forms
 from . import models
 
 
-class PersonalForm(forms.ModelForm):
-    class Meta:
-        model = models.Scholarship
-        fields = "__all__"
+# bio-data
+class BioDataForm(forms.Form):
+    pass
+
+
+class SchoolForm(forms.Form):
+    pass
+
+
+class ReasonForm(forms.Form):
+    pass
