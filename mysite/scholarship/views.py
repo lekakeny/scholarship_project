@@ -32,14 +32,44 @@ def biodata(request):
 
 
 def schoolinfo(request):
+    form = SchoolForm()
     context = {
-        'form': SchoolForm(),
+        'form': form,
     }
+    if request.method == "POST":
+        form = SchoolForm(request.POST, request.FILES)
+        if form.is_valid():
+            school_name = form.cleaned_data['school_name']
+            school_address = form.cleaned_data['school_address']
+            academic_level = form.cleaned_data['academic_level']
+            completion_year = form.cleaned_data['completion_year']
+
+            Scholarship.objects.create(
+                school=school_name,
+                address=school_address,
+                level=academic_level,
+                year=completion_year,
+            )
+            return redirect(reverse("reason"))
     return render(request, 'school.html', context=context)
 
 
 def reason(request):
+    form = ReasonForm()
     context = {
         'form': ReasonForm(),
     }
+    if request.method == "POST":
+        form = SchoolForm(request.POST, request.FILES)
+        if form.is_valid():
+            sponsorship_reasons = form.cleaned_data['sponsorship_reasons']
+            recommendation_letter = form.cleaned_data['recommendation_letter']
+            academic_level = form.cleaned_data['academic_level']
+            completion_year = form.cleaned_data['completion_year']
+
+            Scholarship.objects.create(
+                reason=sponsorship_reasons,
+                letter=recommendation_letter,
+            )
+            # return redirect(reverse("reason"))
     return render(request, 'reason.html', context=context)
