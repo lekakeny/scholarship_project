@@ -7,9 +7,9 @@ class BioDataForm(forms.Form):
     your_name = forms.CharField(label='Your name', max_length=100)
     your_address = forms.CharField(label='Your Address', max_length=100)
     your_mobile = forms.CharField(label='Your Mobile Number', max_length=100)
-    your_email = forms.CharField(label='Your Email Address', max_length=100)
-    your_birth = forms.FileField(label='Your Birth Certificate', max_length=100)
-    your_naid = forms.FileField(label='Your National ID', max_length=100)
+    your_email = forms.CharField(label='Your Email Address', max_length=100, widget=forms.EmailInput)
+    your_birth = forms.FileField(label='Your Birth Certificate')
+    your_naid = forms.FileField(label='Your National ID')
 
 
 class SchoolForm(forms.Form):

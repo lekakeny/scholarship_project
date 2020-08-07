@@ -11,8 +11,11 @@
 <body>
 {% block step_content %}
 <h4>BioData</h4>
+<form id="msform" enctype="multipart/form-data" method="post">
+{% csrf_token %}
 {{form.as_p}}
 <button class="btn btn-primary mx-5 mb-2">next</button>
+</form>
 {% endblock step_content %}
 </body>
 </html>
