@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, reverse
 from .forms import BioDataForm, SchoolForm, ReasonForm
 from .models import Scholarship
 
@@ -18,11 +18,15 @@ def biodata(request):
             your_email = form.cleaned_data['your_email']
             your_birth = form.cleaned_data['your_birth']
             your_naid = form.cleaned_data['your_naid']
-            print(request.user)
-            # Scholarship.object.create(
-            #     user=request.user
-            # )
-
+            Scholarship.objects.create(
+                contact1=your_email,
+                contact2=your_mobile,
+                birth=your_birth,
+                naid=your_naid,
+                address=your_address,
+                names=your_name,
+            )
+        return redirect(reverse("schoolinfo"))
 
     return render(request, 'biodata.html', context=context)
 

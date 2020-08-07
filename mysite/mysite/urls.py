@@ -20,6 +20,8 @@ from django.contrib.auth import views
 from scholarship.views import (
     biodata, schoolinfo, reason
 )
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,4 +30,4 @@ urlpatterns = [
     path('submit/', reason, name='submit'),
     url(r'^accounts/login/$', views.LoginView.as_view(), name='login'),
     url(r'^accounts/logout/$', views.LogoutView.as_view(), name='logout', kwargs={'next_page': '/'}),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
