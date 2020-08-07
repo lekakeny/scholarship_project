@@ -1,8 +1,24 @@
 from django.shortcuts import render
-from . import forms
+from .forms import BioDataForm, SchoolForm, ReasonForm
 
 
 # Create your views here.
-def index(request):
-    return render(request, 'step.html')
+def biodata(request):
+    context = {
+        'form': BioDataForm(),
+    }
+    return render(request, 'biodata.html', context=context)
 
+
+def schoolinfo(request):
+    context = {
+        'form': SchoolForm(),
+    }
+    return render(request, 'school.html', context=context)
+
+
+def reason(request):
+    context = {
+        'form': ReasonForm(),
+    }
+    return render(request, 'reason.html', context=context)
