@@ -1,0 +1,24 @@
+{% extends "base.html" %} {% block content %}
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-6 mx-auto">
+      <h3>List of scholarship applications</h3>
+      <ul class="list-group">
+        {% for s in qs %}
+        <a href="{% url 'detail' pk=s.pk %}" class="text-decoration-none"
+          ><li class="list-group-item">Name: {{s.user}}</li></a
+        >
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}
+<ul class="list-group">
+  <li class="list-group-item">Cras justo odio</li>
+  <li class="list-group-item">Dapibus ac facilisis in</li>
+  <li class="list-group-item">Morbi leo risus</li>
+  <li class="list-group-item">Porta ac consectetur ac</li>
+  <li class="list-group-item">Vestibulum at eros</li>
+</ul>

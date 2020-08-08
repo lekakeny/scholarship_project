@@ -1,0 +1,39 @@
+{% extends "base.html" %} {% block content %}
+<div class="container">
+  <div class="row mt-4">
+    <div class="col-8 mx-auto">
+      <h3 class="text-center">{{object.user}}</h3>
+      <ul class="list-group">
+        <li class="list-group-item">contact1: {{object.contact1}}</li>
+        <li class="list-group-item">contact2: {{object.contact2}}</li>
+        <li class="list-group-item">
+          Birth Certificate File:
+          <a href="/media/{{object.birth}}">{{object.birth}}</a>
+        </li>
+        <li class="list-group-item">
+          National ID File:
+          <a href="/media/{{object.naid}}">{{object.naid}}</a>
+        </li>
+        <li class="list-group-item">
+          Recommendation Letter:
+          <a href="/media/{{object.letter}}">{{object.letter}}</a>
+        </li>
+        <li class="list-group-item">First Name: {{object.user.first_name}}</li>
+        <li class="list-group-item">Last Name: {{object.user.last_name}}</li>
+        <li class="list-group-item">
+          school: {% if object.school %} {{object.school}} {%else%} Empty
+          {% endif %}
+        </li>
+        <li class="list-group-item">address:{% if object.address %} {{object.address}} {%else%} Empty
+          {% endif %}</li>
+        <li class="list-group-item">level: {% if object.level %} {{object.level}} {%else%} Empty
+          {% endif %}</li>
+          <li class="list-group-item">Year: {{object.year}}</li>
+          <li class="list-group-item">Reason: {% if object.reason %} {{object.reason}} {%else%} Empty
+          {% endif %}</li>
+      </ul>
+      <p class="text-center"><a href="{% url 'approve' pk=object.pk %}" class="btn text-light btn-success my-1">Approve</a></p>
+    </div>
+  </div>
+</div>
+{% endblock content %}

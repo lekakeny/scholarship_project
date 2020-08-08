@@ -16,6 +16,7 @@ class Scholarship(models.Model):
     letter = models.FileField(upload_to='%s/letter/'.format(user), null=True, blank=True)
     school = models.CharField(max_length=500, null=True, blank=True)
     address = models.CharField(max_length=500, null=True, blank=True)
+    school_address = models.CharField(max_length=500, null=True, blank=True)
     level = models.CharField(max_length=500, null=True, blank=True)
     year = models.DateTimeField(null=True, blank=True)
     reason = models.CharField(max_length=500, null=True, blank=True)

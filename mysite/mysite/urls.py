@@ -18,7 +18,7 @@ from django.conf.urls import url
 from django.urls import path
 from django.contrib.auth import views
 from scholarship.views import (
-    biodata, schoolinfo, reason, thank_you
+    biodata, schoolinfo, reason, thank_you, list_scholarship, detail_scholarship, approve, successfully
 )
 from django.conf import settings
 from django.conf.urls.static import static
@@ -30,5 +30,9 @@ urlpatterns = [
     path('submit/', reason, name='submit'),
     url(r'^accounts/login/$', views.LoginView.as_view(), name='login'),
     url(r'^accounts/logout/$', views.LogoutView.as_view(), name='logout', kwargs={'next_page': '/'}),
-    url(r'^thank_you/$', thank_you, name='thank_you'),
+    path('thank_you/', thank_you, name='thank_you'),
+    path('list/', list_scholarship, name='list'),
+    path('detail/<int:pk>/', detail_scholarship, name='detail'),
+    path('approve/<int:pk>/', approve, name='approve'),
+    path('successfully/', successfully, name='successfully'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
