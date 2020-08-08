@@ -63,7 +63,7 @@ def schoolinfo(request):
                 level=academic_level,
                 year=completion_year,
             )
-            return redirect(reverse("submit "))
+            return redirect(reverse("submit"))
     return render(request, 'school.html', context=context)
 
 
