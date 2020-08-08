@@ -5,7 +5,7 @@ from django.core.mail import send_mail
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from .forms import BioDataForm, SchoolForm, ReasonForm
-from .models import Scholarship
+from .models import Scholarship, Sponsor
 
 
 
@@ -144,3 +144,45 @@ def approve(request, pk):
 
 def successfully(request):
     return render(request, 'success.html')
+
+
+@login_required
+def list_scholarship_for_sponsors(request):
+    # Make sure that its a sponsor accessing this view
+    s = Sponsor.objects.filter(user=request.user).first()
+    # get_object_or_404(Sponsor, user=request.user)
+    if s is None:
+        return redirect(reverse('login') + '?next=' + request.path)
+    qs = Scholarship.objects.filter(approved=True).filter(sponsored=False).all()
+    return render(request, 'listsp.html', context={'qs': qs})
+
+
+@login_required
+def detail_scholarship_for_sponsors(request, pk):
+    # Make sure that its a sponsor accessing this view
+    s = Sponsor.objects.filter(user=request.user).first()
+    # get_object_or_404(Sponsor, user=request.user)
+    if s is None:
+        return redirect(reverse('login') + '?next=' + request.path)
+    object = get_object_or_404(Scholarship, pk=pk)
+    return render(request, 'detailsp.html', context={'object': object})
+
+
+@login_required
+def approvesp(request, pk):
+    s = Sponsor.objects.filter(user=request.user).first()
+    if s is None:
+        HttpResponseNotFound('<h1>Not Authorized</h1>')
+    object = get_object_or_404(Scholarship, pk=pk)
+    object.sponsored = True
+    object.save()
+    message = ('You have been successfully sponsored. Name of Sponsor: {name}, email address: {email}'.format(
+        name=s.user.username, email=s.user.email))
+    send_mail(
+        'Sponsorship',
+        message,
+        'from@example.com',
+        [str(object.user.email)],
+        fail_silently=True,
+    )
+    return redirect(reverse_lazy('successfully'))

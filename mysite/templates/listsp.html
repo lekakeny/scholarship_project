@@ -1,0 +1,17 @@
+{% extends "base.html" %} {% block content %}
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-6 mx-auto">
+      <h3>List of approved scholarship applications</h3>
+      <ul class="list-group">
+        {% for s in qs %}
+        <a href="{% url 'detailsp' pk=s.pk %}" class="text-decoration-none"
+          ><li class="list-group-item">Name: {{s.user}}</li></a
+        >
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

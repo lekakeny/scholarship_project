@@ -18,7 +18,8 @@ from django.conf.urls import url
 from django.urls import path
 from django.contrib.auth import views
 from scholarship.views import (
-    biodata, schoolinfo, reason, thank_you, list_scholarship, detail_scholarship, approve, successfully
+    biodata, schoolinfo, reason, thank_you, list_scholarship, detail_scholarship, approve, successfully,
+    list_scholarship_for_sponsors, detail_scholarship_for_sponsors, approvesp
 )
 from django.conf import settings
 from django.conf.urls.static import static
@@ -33,6 +34,9 @@ urlpatterns = [
     path('thank_you/', thank_you, name='thank_you'),
     path('list/', list_scholarship, name='list'),
     path('detail/<int:pk>/', detail_scholarship, name='detail'),
+    path('detailsp/<int:pk>/', detail_scholarship_for_sponsors, name='detailsp'),
+    path('approvesp/<int:pk>/', approvesp, name='approvesp'),
     path('approve/<int:pk>/', approve, name='approve'),
     path('successfully/', successfully, name='successfully'),
+    path('listsp/', list_scholarship_for_sponsors, name='listsp'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
