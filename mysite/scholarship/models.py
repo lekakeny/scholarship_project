@@ -1,11 +1,13 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from django.shortcuts import reverse
+
+User = get_user_model()
 
 
 # Create your models here.
 class Scholarship(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, blank=True, null=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     names = models.CharField(max_length=30, null=True, blank=True)
     contact1 = models.CharField(max_length=30, null=True, blank=True)
     contact2 = models.CharField(max_length=30, null=True, blank=True)
