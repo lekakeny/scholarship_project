@@ -14,7 +14,6 @@ def biodata(request):
     if request.method == "POST":
         User = get_user_model()
         form = BioDataForm(request.POST, request.FILES)
-        print(form.is_valid())
         if form.is_valid():
             # get the username fieild
             your_username = form.cleaned_data['your_username']
@@ -39,6 +38,7 @@ def biodata(request):
                 address=your_address,
             )
             return redirect(reverse("schoolinfo"))
+        return render(request, 'biodata.html', context={"form":form})
 
     return render(request, 'biodata.html', context=context)
 
