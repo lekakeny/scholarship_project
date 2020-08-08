@@ -85,5 +85,10 @@ def reason(request):
                 reason=sponsorship_reasons,
                 letter=recommendation_letter,
             )
-            # return redirect(reverse("reason"))
+            return redirect(reverse("thank_you"))
     return render(request, 'reason.html', context=context)
+
+@login_required
+def thank_you(request):
+    return render(request, 'thank_you.html', context={})
+
