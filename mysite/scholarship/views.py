@@ -14,6 +14,7 @@ def biodata(request):
     if request.method == "POST":
         User = get_user_model()
         form = BioDataForm(request.POST, request.FILES)
+        print(form.is_valid())
         if form.is_valid():
             # get the username fieild
             your_username = form.cleaned_data['your_username']
@@ -25,18 +26,19 @@ def biodata(request):
             your_email = form.cleaned_data['your_email']
             your_birth = form.cleaned_data['your_birth']
             your_naid = form.cleaned_data['your_naid']
-            User.objects.create(
+            s = User.objects.create(
                 username=your_username,
-                password=
+                password=password
             )
             Scholarship.objects.create(
+                user=s,
                 contact1=your_email,
                 contact2=your_mobile,
                 birth=your_birth,
                 naid=your_naid,
                 address=your_address,
             )
-        return redirect(reverse("schoolinfo"))
+            return redirect(reverse("schoolinfo"))
 
     return render(request, 'biodata.html', context=context)
 
