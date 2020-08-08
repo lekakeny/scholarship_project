@@ -8,7 +8,6 @@ from .forms import BioDataForm, SchoolForm, ReasonForm
 from .models import Scholarship, Sponsor
 
 
-
 # Create your views here.
 def biodata(request):
     form = BioDataForm()
