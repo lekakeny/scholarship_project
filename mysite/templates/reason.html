@@ -11,6 +11,7 @@
 <body>
 {% block step_content %}
 <h4>Final Step</h4>
+<form id="msform" enctype="multipart/form-data" method="post">
 {{form.as_p}}
 <button class="btn btn-success mx-5 mb-2">submit</button>
 {% endblock step_content %}

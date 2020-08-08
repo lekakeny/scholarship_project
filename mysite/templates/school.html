@@ -11,6 +11,8 @@
 <body>
 {% block step_content %}
 <h4>School Information</h4>
+<form id="msform" enctype="multipart/form-data" method="post">
+{% csrf_token %}
 {{form.as_p}}
 <button class="btn btn-primary mx-5 mb-2">next</button>
 {% endblock step_content %}
