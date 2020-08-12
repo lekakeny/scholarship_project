@@ -39,4 +39,4 @@ class SchoolForm(forms.Form):
 class ReasonForm(forms.Form):
     sponsorship_reasons = forms.CharField(label='In at most 500 words, write an essay on why you need this '
                                                 'sponsorship', max_length=1000, widget=forms.Textarea)
-    recommendation_letter = forms.FileField(label='Upload your letter of recommendation', max_length=100)
+    recommendation_letter = forms.FileField(label='Upload your letter of recommendation')
