@@ -85,7 +85,7 @@ def reason(request):
         'form': form,
     }
     if request.method == "POST":
-        form = SchoolForm(request.POST, request.FILES)
+        form = ReasonForm(request.POST, request.FILES)
         if form.is_valid():
             sponsorship_reasons = form.cleaned_data['sponsorship_reasons']
             recommendation_letter = form.cleaned_data['recommendation_letter']
